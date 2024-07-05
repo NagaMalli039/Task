@@ -11,19 +11,52 @@
 
           <q-toolbar-title> Quasar Framework </q-toolbar-title>
 
-          <q-btn flat round dense icon="whatshot" />
-          <q-chip> {{ quantity }} </q-chip>
-        </q-toolbar>
+<q-card-actions>          
+  
+  <q-btn flat round icon="shopping_cart" @click="showCartDialog = true">
+        <q-badge color="red" floating>{{ productStore.cartItemCount }}</q-badge>
+      </q-btn>
+    
+      <q-dialog v-model="showCartDialog">
+        <q-card>
+          <q-card-section>
+            <div class="text-h6">Shopping Cart</div>
+          </q-card-section>
 
+          <q-card-section>
+              <div v-for="item in productStore.cart" :key="item.id" class="q-mb-md">
+                <q-card>
+                  <q-card-section>
+                    <q-card-title>{{ item.title }}</q-card-title>
+                    <q-card-main>
+                      <p>{{ item.category }}</p>
+                      <p>Price: {{ item.price }}</p>
+                      <p>Quantity: {{ item.count }}</p>
+                    </q-card-main>
+                  </q-card-section>
+                </q-card>
+                </div>
+          </q-card-section>
+
+          <q-card-actions align="right">
+            <q-btn flat label="Close" color="primary" v-close-popup />
+          </q-card-actions>
+
+        </q-card>
+      </q-dialog>
+
+
+    </q-card-actions>
+
+  </q-toolbar>
 
         <q-tabs align="left">
           <q-route-tab to="/" label="Home" />
 
         <q-route-tab to="/fetch" label="Products" />
-        <q-route-tab to="/page3" label="Page Three" />
+        <q-route-tab to="/ProductsTable" label="Table" />
+
       </q-tabs>
-
-
 
       </q-header>
 
@@ -32,13 +65,12 @@
 
 <script setup>
 
-const quantity=ref(0);
 
-const addToCart=()=>{
- 
+const productStore = useProductStore();
 
+const { cartItemCount, cart  } = productStore;
+const showCartDialog=ref(false);
 
-}
 
 </script>
 
