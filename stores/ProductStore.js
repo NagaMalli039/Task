@@ -7,7 +7,7 @@ export const useProductStore = defineStore('product', () => {
   const products = ref([]); 
   const cart = ref([]);
 
- 
+
   const fetchProducts = async () => {
     try {
       const response = await axios.get('https://fakestoreapi.com/products');
@@ -15,8 +15,10 @@ export const useProductStore = defineStore('product', () => {
       products.value = response.data.map(product => ({
         ...product, 
         count: 0 // Initialize count for each product
-      }));
+      })); 
+ 
       console.log(product, 'Product') 
+    
     } catch (err) {
       error.value = err.message || 'Failed to fetch products';
     }
@@ -24,10 +26,11 @@ export const useProductStore = defineStore('product', () => {
   };
 
   const incrementCount = (productId) => {
-    const product = products.value.find(product => product.id === productId);
+    const product = products.value.find(product => product.id === productId); 
+
     if (product) {
       product.count++;
-    }
+    } 
   };
 
   const decrementCount = (productId) => {
@@ -40,6 +43,7 @@ export const useProductStore = defineStore('product', () => {
 
   const addToCart = (productId) => {
     const product = products.value.find(product => product.id === productId);
+   
     console.log(product, 'product')
     
     if (product && product.count > 0) {
@@ -56,10 +60,12 @@ export const useProductStore = defineStore('product', () => {
   };
 
   const cartItemCount = computed(() => {
+
     return cart.value.reduce((total, item) => total + item.count, 0);
     console.log(cartItemCount, 'CART COUNT');
 
   });
 
-  return { products, fetchProducts,incrementCount,decrementCount, addToCart, cartItemCount,cart };
+  return { products, fetchProducts,incrementCount,decrementCount, addToCart, cartItemCount,cart }; 
+
 });

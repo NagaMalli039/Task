@@ -10,10 +10,7 @@
           <div class="q-pa-md">
             <div class="q-gutter-md q-col-gutter-md">
               <q-card
-                v-for="product in productStore.products"
-                :key="product.id"
-                class="q-mb-md">
-                
+                v-for="product in productStore.products" :key="product.id" class="q-mb-md">
                 <q-card-section>
                   <q-card-title> <h5>{{ product.title }}</h5> </q-card-title>
 
@@ -36,9 +33,7 @@
                       <span class="counter">{{ product.count }}</span>
 
                       <q-btn color="black" @click="productStore.decrementCount(product.id)"> - </q-btn>
-
                       <q-btn color="primary" @click="addToCart(product.id)">Add to Cart</q-btn>
-
 
                     </div>
                   </q-card-actions>
@@ -59,6 +54,7 @@ import { useProductStore } from '~/stores/ProductStore';
 
 
 const productStore = useProductStore();
+
 const { products, fetchProducts,incrementCount,decrementCount,addToCart } = productStore;
 
 onMounted(async () => {
@@ -67,7 +63,8 @@ await fetchProducts();
 
 });
 
-</script>
+</script> 
+
 <style scoped>
 .q-col-gutter-md {
   margin-bottom: 16px; /* Adjust spacing between columns */

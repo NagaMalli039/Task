@@ -28,14 +28,17 @@
                 <q-card>
                   <q-card-section>
                     <q-card-title>{{ item.title }}</q-card-title>
+
                     <q-card-main>
                       <p>{{ item.category }}</p>
                       <p>Price: {{ item.price }}</p>
                       <p>Quantity: {{ item.count }}</p>
                     </q-card-main>
+
                   </q-card-section>
                 </q-card>
                 </div>
+
           </q-card-section>
 
           <q-card-actions align="right">
@@ -48,13 +51,13 @@
 
     </q-card-actions>
 
-  </q-toolbar>
+</q-toolbar>
 
         <q-tabs align="left">
           <q-route-tab to="/" label="Home" />
 
         <q-route-tab to="/fetch" label="Products" />
-        <q-route-tab to="/ProductsTable" label="Table" />
+        <q-route-tab to="/table" label="Table" />
 
       </q-tabs>
 
@@ -64,7 +67,6 @@
 </template>
 
 <script setup>
-
 
 const productStore = useProductStore();
 
